@@ -40,7 +40,7 @@ end
  
 -- Draw a coloured rectangle.
 function love.draw()
-    love.graphics.setColor(0, 0.4, 0.4)
+    love.graphics.setColor(0, 0.6, 0.4)
     love.graphics.rectangle("fill", bastao1.x, bastao1.y, bastao1.w, bastao1.h)
     love.graphics.rectangle("fill", bastao2.x, bastao2.y, bastao2.w, bastao2.h)
     love.graphics.ellipse("fill",bola.x,bola.y,bola.rx,bola.ry)
