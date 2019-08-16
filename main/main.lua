@@ -1,5 +1,8 @@
 -- Load some default values for our rectangle.
 function love.load()
+	love.window.setTitle("PONG")
+	love.window.setPosition(400, 200)
+	love.window.setMode(960,540)
     pontuacao1 = 0
     pontuacao2 = 0
 
@@ -47,17 +50,22 @@ function love.load()
       bola.b:setLinearVelocity(200,130)
 
 
+      bg = love.graphics.newImage("background.jpg")
+      fonte8bit = love.graphics.newFont("8-BIT WONDER.ttf")
+      love.graphics.setFont(fonte8bit)
+
+
 end
 
 function love.update(dt)
     bolaXSpeed, bolaYSpeed = bola.b:getLinearVelocity()
 
-    if bolaXSpeed < 40 and bolaXSpeed >= 0  then
-        bola.b:setLinearVelocity(50,bolaYSpeed)
+    if bolaXSpeed < 60 and bolaXSpeed >= 0  then
+        bola.b:setLinearVelocity(70,bolaYSpeed)
     end
 
-    if bolaXSpeed > -40 and bolaXSpeed <= 0  then
-        bola.b:setLinearVelocity(-50,bolaYSpeed)
+    if bolaXSpeed > -60 and bolaXSpeed <= 0  then
+        bola.b:setLinearVelocity(-70,bolaYSpeed)
     end
 
 	  mundo:update(dt)
@@ -124,20 +132,26 @@ function love.draw()
     --love.graphics.setColor(0, 0.6, 0.4)
     --love.graphics.polygon("fill", teto.b:getWorldPoints(teto.s:getPoints()))
     --love.graphics.polygon("fill", chao.b:getWorldPoints(chao.s:getPoints()))
-    love.graphics.setColor(1, 112/255, 13/255, 1)
-    love.graphics.ellipse("fill", bola.b:getX(), bola.b:getY(), bola.s:getRadius(), bola.s:getRadius())
+    love.graphics.setColor(232/255, 12/255, 116/255,1)
+    love.graphics.draw(bg, 0, 0, 0, W/bg:getWidth(), H/bg:getHeight())
 
-    love.graphics.setColor(13/255, 109/255, 1, 1)
-    love.graphics.polygon("fill", bastao1.b:getWorldPoints(bastao1.s:getPoints()))
-    love.graphics.polygon("fill", bastao2.b:getWorldPoints(bastao2.s:getPoints()))
-    love.graphics.setColor(1,1,1)
+
+    love.graphics.setColor(1,1,1,1)
     love.graphics.print(pontuacao1, (W/2) - 60, 100, 0, 4, 4)
     love.graphics.print(pontuacao2, (W/2) + 30, 100, 0, 4, 4)
-    love.graphics.line(W/2, 0, W/2, H)
+
+
+
+    love.graphics.setColor(12/255, 232/255, 16/255, 1)
+    love.graphics.ellipse("fill", bola.b:getX(), bola.b:getY(), bola.s:getRadius(), bola.s:getRadius())
+
 
     for i, pos in ipairs(bola.prevPos) do
-        love.graphics.setColor(1, 112/255, 13/255, 1/i)
+        love.graphics.setColor(112/255, 232/255, 16/255, 1/(10- i))
         love.graphics.ellipse("fill", pos[1], pos[2], bola.s:getRadius(), bola.s:getRadius())
     end
+
+    love.graphics.polygon("fill", bastao1.b:getWorldPoints(bastao1.s:getPoints()))
+    love.graphics.polygon("fill", bastao2.b:getWorldPoints(bastao2.s:getPoints()))
 
 end
