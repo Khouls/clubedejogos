@@ -52,11 +52,11 @@ end
 function love.update(dt)
     bolaXSpeed, bolaYSpeed = bola.b:getLinearVelocity()
 
-    if bolaXSpeed < 40 and bolaXSpeed >= 0  then
+    if (bolaXSpeed < 40) and (bolaXSpeed >= 0)  then
         bola.b:setLinearVelocity(50,bolaYSpeed)
     end
 
-    if bolaXSpeed > -40 and bolaXSpeed <= 0  then
+    if (bolaXSpeed > -400 and (bolaXSpeed <= 0)  then
         bola.b:setLinearVelocity(-50,bolaYSpeed)
     end
 
@@ -75,14 +75,14 @@ function love.update(dt)
         bola.b:setX(W/2)
         bola.b:setY(H/2)
 
-        bola.b:setLinearVelocity(-200, math.random(-150,150))
+        bola.b:setLinearVelocity(-200, 0)--math.random(-150,150))
 
     elseif (bolaX - bolaR) <= 0 then -- Saiu pela esquerda
         pontuacao2 = pontuacao2 + 1
         bola.b:setX(W/2)
         bola.b:setY(H/2)
 
-        bola.b:setLinearVelocity(200, math.random(-150,150))
+        bola.b:setLinearVelocity(200, 0)--math.random(-150,150))
 
     end
 
@@ -95,17 +95,15 @@ function love.update(dt)
 
     if love.keyboard.isDown("q") and yB1 > 50 then
         bastao1.b:setY(yB1 - speedB * dt)
-    end
 
-    if love.keyboard.isDown("a") and yB1 < (H - 50) then
+    elseif love.keyboard.isDown("a") and yB1 < (H - 50) then
         bastao1.b:setY(yB1 + speedB * dt)
     end
 
     if love.keyboard.isDown("p") and yB2 > 50 then
         bastao2.b:setY(yB2 - speedB * dt)
-    end
 
-    if love.keyboard.isDown("l") and yB2 < (H - 50) then
+    elseif love.keyboard.isDown("l") and yB2 < (H - 50) then
         bastao2.b:setY(yB2 + speedB * dt)
     end
 
@@ -114,7 +112,6 @@ function love.update(dt)
     for i = 1,9 do
         bola.prevPos[i] = bola.prevPos[i+1]
     end
-
 
 
 end
